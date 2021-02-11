@@ -2,24 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class testi : MonoBehaviour
+public class MouseLook : MonoBehaviour
 {
-    public int id = 0;
-    public string nameObj = "Taavi"; 
-    public float number = 0f;
-    public double number2 = 5.55;
-    public bool onkoOviAuki = true;
+    public float mouseSensitivity = 100f;
+    public Transform playerBody;
+    private float xRotation = 0f;
 
-    
     // Start is called before the first frame update
     void Start()
     {
-        
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
 }
