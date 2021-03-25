@@ -7,6 +7,8 @@ public class Weapon : MonoBehaviour
 {
     public float throwForce = 10f;
     public GameObject throwObjPrefab;
+    public Transform throwNode;
+    public FireArm fireArm;
     private Camera FPSCamera;
 
     // Start is called before the first frame update
@@ -18,14 +20,35 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Fire1")){
+        if(Input.GetButtonDown("Fire2")){
             Throw();
+        }
+
+        if(Input.GetButtonDown("Fire1"))
+        {
+            Shoot();
         }
     }
 
     private void Throw()
     {
-     GameObject obj = Instantiate(throwObjPrefab,transform.position,Quaternion.identity);
-     obj.GetComponent<Rigidbody>().AddForce(FPSCamera.transform.forward * throwForce);
+        GameObject obj = Instantiate(throwObjPrefab,throwNode.position,Quaternion.identity);
+        obj.GetComponent<Rigidbody>().AddForce(FPSCamera.transform.forward * throwForce);
+    }
+
+    public void Shoot(){
+
+        if(fireArm != null)
+        {
+           fireArm.Fire(); 
+        }
+        else
+        {
+            print("Asetta ei ole asetettu");
+        }
+    }
+
+    public void SetFireArm(FireArm newFirearm){
+        fireArm = newFirearm;
     }
 }
