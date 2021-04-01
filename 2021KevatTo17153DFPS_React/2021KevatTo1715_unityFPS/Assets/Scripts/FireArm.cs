@@ -15,7 +15,7 @@ public class FireArm : MonoBehaviour
     void Start()
     {
         fpsCamera = Camera.main;
-        GetComponentInParent<Weapon>().SetFireArm(this);
+        //GetComponentInParent<Weapon>().SetFireArm(this);
         
     }
 
@@ -28,5 +28,13 @@ public class FireArm : MonoBehaviour
     public void Fire(){
         print("AMPUUU SARJAAA");
         //Debug.Log("esimerkki");
+
+        // RaycastHit hit;
+        // if(Physics.Raycast(fpsCamera.transform.position,fpsCamera.transform.forward,out hit,range)){
+        //     if(hit.collider.GetComponent<testi>())
+        //     {
+        //         hit.collider.GetComponent<testi>().TakeDamage();
+        //     }
+        // }
     }
 }
