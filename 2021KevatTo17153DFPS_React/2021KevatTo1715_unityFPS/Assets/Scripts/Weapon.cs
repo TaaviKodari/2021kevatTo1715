@@ -11,25 +11,26 @@ public class Weapon : MonoBehaviour
     public FireArm fireArm;
 
     //1.4. asiat
-    // public Transform weaponNode;
-    // public List<Transform> firearms = new List<Transform>();
+     public Transform weaponNode;
+
+     public List<Transform> firearms = new List<Transform>();
     private Camera FPSCamera;
-    //public int currentWeaponIndex = 0;
+    public int currentWeaponIndex = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         FPSCamera = Camera.main;
          //1.4. asiat
-        // foreach(Transform child in weaponNode)
-        // {
-        //     if(child.GetComponent<FireArm>())
-        //     {
-        //         firearms.Add(child);
-        //     }
-        // }
+         foreach(Transform child in weaponNode)
+         {
+            if(child.GetComponent<FireArm>())
+            {
+                firearms.Add(child);
+            }
+         }
 
-        //    UpdateCurrentweapon();
+        UpdateCurrentweapon();
     }
 
     // Update is called once per frame
@@ -44,10 +45,10 @@ public class Weapon : MonoBehaviour
             Shoot();
         }
     //1.4. asiat
-        // if(Input.GetKeyDown(KeyCode.Q))
-        // {
-        //     ChangeNextWeapon(1);
-        // }
+         if(Input.GetKeyDown(KeyCode.Q))
+         {
+             ChangeNextWeapon(1);
+         }
     }
 
     private void Throw()
@@ -74,31 +75,31 @@ public class Weapon : MonoBehaviour
         fireArm = newFirearm;
     }
     //1.4. asiat
-    // public void ChangeNextWeapon(int nextIndex)
-    // {
-    //     currentWeaponIndex += nextIndex;
+     public void ChangeNextWeapon(int nextIndex)
+     {
+         currentWeaponIndex += nextIndex;
 
-    //     if(currentWeaponIndex > firearms.Count-1)
-    //     {
-    //         currentWeaponIndex = 0;
-    //     }
+        if(currentWeaponIndex > firearms.Count-1)
+        {
+            currentWeaponIndex = 0;
+        }
 
-    //     UpdateCurrentweapon();
-    // }
+         UpdateCurrentweapon();
+     }
     //1.4. asiat
-    // public void UpdateCurrentweapon()
-    // {
-    //      for(int i = 0; i < firearms.Count;i++)
-    //     {
-    //         if(currentWeaponIndex != i)
-    //         {
-    //             firearms[i].gameObject.SetActive(false);
-    //         }
-    //         else
-    //         {
-    //             firearms[i].gameObject.SetActive(true);
-    //             fireArm = firearms[i].GetComponent<FireArm>();
-    //         }
-    //     }
-    // }
+    public void UpdateCurrentweapon()
+    {
+        for(int i = 0; i < firearms.Count;i++)
+        {
+            if(currentWeaponIndex != i)
+            {
+                firearms[i].gameObject.SetActive(false);
+            }
+            else
+             {
+                firearms[i].gameObject.SetActive(true);
+                fireArm = firearms[i].GetComponent<FireArm>();
+             }
+        }
+    }
 }
