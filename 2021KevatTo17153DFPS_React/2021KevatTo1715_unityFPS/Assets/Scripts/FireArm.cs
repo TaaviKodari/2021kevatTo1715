@@ -26,15 +26,16 @@ public class FireArm : MonoBehaviour
     }
 
     public void Fire(){
-        print("AMPUUU SARJAAA");
+       // print("AMPUUU SARJAAA");
         //Debug.Log("esimerkki");
 
-        // RaycastHit hit;
-        // if(Physics.Raycast(fpsCamera.transform.position,fpsCamera.transform.forward,out hit,range)){
-        //     if(hit.collider.GetComponent<testi>())
-        //     {
-        //         hit.collider.GetComponent<testi>().TakeDamage();
-        //     }
-        // }
+        RaycastHit hit;
+         if(Physics.Raycast(fpsCamera.transform.position,fpsCamera.transform.forward,out hit,range))
+         {
+            if(hit.collider.GetComponent<ITakeDamage<float>>() != null)
+            {
+                hit.collider.GetComponent<ITakeDamage<float>>().Damage(attackPower);
+            }
+         }  
     }
 }
