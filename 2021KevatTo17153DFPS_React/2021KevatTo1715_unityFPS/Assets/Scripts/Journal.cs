@@ -7,7 +7,10 @@ using TMPro;
 public class Journal : MonoBehaviour
 {
     public static Journal Instance;
-
+    public TMP_Text textBox;
+    public GameObject textBoxImage;
+    public float textFadeOutDuration = 1;
+    private float countdown;
     void Awake()
     {
         if(Instance != null)
@@ -18,16 +21,36 @@ public class Journal : MonoBehaviour
         {
             Instance = this;
         }
+
+        DisableTextBox();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(textBoxImage.activeSelf)
+        {
+            countdown -= Time.deltaTime;
+
+            if(countdown <= 0)
+            {
+                DisableTextBox();
+            }
+        }
     }
 
     public void Log(string text)
     {
-        print(text);
+        //print(text);
+        textBoxImage.SetActive(true);
+        textBox.text = text;
+        //käynnistetään laskuri tekstin piilottamiseksi
+        countdown = textFadeOutDuration;
+    }
+
+    private void DisableTextBox()
+    {
+        textBox.text = "";
+        textBoxImage.SetActive(false);
     }
 }
